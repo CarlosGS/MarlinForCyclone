@@ -496,7 +496,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #define DEFAULT_AXIS_STEPS_PER_UNIT   {3200.0/(Cyclone_XY_Gear_Ratio*1.25),3200.0/(Cyclone_XY_Gear_Ratio*1.25),3200.0/(Cyclone_Z_Gear_Ratio*1.25),800}  // steps per unit for Cyclone
   
 #define DEFAULT_MAX_FEEDRATE          {5, 5, 2.5, 45}    // (mm/sec)    
-#define DEFAULT_MAX_ACCELERATION      {8,8,8,3000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
+#define DEFAULT_MAX_ACCELERATION      {16,16,16, 3000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
 #define DEFAULT_ACCELERATION          20     // X, Y, Z and E max acceleration in mm/s^2 for printing moves 
 #define DEFAULT_RETRACT_ACCELERATION  3000   // X, Y, Z and E max acceleration in mm/s^2 for r retracts
 
@@ -508,7 +508,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 
 // The speed change that does not require acceleration (i.e. the software might assume it can be done instantaneously)
 #define DEFAULT_XYJERK                2.5    // (mm/sec)
-#define DEFAULT_ZJERK                 2.5     // (mm/sec)
+#define DEFAULT_ZJERK                 2.5    // (mm/sec)
 #define DEFAULT_EJERK                 5.0    // (mm/sec)
 
 //===========================================================================
@@ -523,6 +523,9 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
   #define Z_PROBE_OFFSET_RANGE_MAX -5
 #endif
 
+// Uncomment to have G0 perform rapid moves (at maximum speed)
+// For some reason RepRap decided to consider G0=G1, enabling this is useful for compatibility with other Gcode flavours
+#define G0_MAX_FEEDRATE
 
 // EEPROM
 // The microcontroller can store settings in the EEPROM, e.g. max velocity...

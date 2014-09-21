@@ -1313,14 +1313,26 @@ void process_commands()
 #ifdef ENABLE_AUTO_BED_LEVELING
   float x_tmp, y_tmp, z_tmp, real_z;
 #endif
+#ifdef G0_MAX_FEEDRATE
+  bool rapid_move = false;
+#endif
   if(code_seen('G'))
   {
     switch((int)code_value())
     {
-    case 0: // G0 -> G1
+    case 0: // G0->G1
+      #ifdef G0_MAX_FEEDRATE
+      rapid_move = true; // (G0 is then G1 with the maximum feedrate)
+      #endif
     case 1: // G1
       if(Stopped == false) {
         get_coordinates(); // For X Y Z E F
+        #ifdef G0_MAX_FEEDRATE
+        if(rapid_move) {
+          saved_feedrate = feedrate;
+          feedrate = 9999;
+        }
+        #endif
           #ifdef FWRETRACT
             if(autoretract_enabled)
             if( !(code_seen('X') || code_seen('Y') || code_seen('Z')) && code_seen('E')) {
@@ -1334,6 +1346,11 @@ void process_commands()
             }
           #endif //FWRETRACT
         prepare_move();
+        #ifdef G0_MAX_FEEDRATE
+        if(rapid_move) {
+          feedrate = saved_feedrate;
+        }
+        #endif
         //ClearToSend();
         return;
       }
@@ -3753,7 +3770,11 @@ Sigma_Exit:
       SERIAL_PROTOCOLLN((int)active_extruder);
     }
   }
-
+  if(code_seen('F')) // Set travel speed for subsequent moves
+  {
+    next_feedrate = code_value();
+    if(next_feedrate > 0.0) feedrate = next_feedrate;
+  }
   else
   {
     SERIAL_ECHO_START;

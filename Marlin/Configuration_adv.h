@@ -220,7 +220,7 @@
 
 #define AXIS_RELATIVE_MODES {false, false, false, false}
 
-#define MAX_STEP_FREQUENCY 30000 // Max step frequency for Ultimaker (5000 pps / half step)
+#define MAX_STEP_FREQUENCY 40000 // Max step frequency for Ultimaker (5000 pps / half step)
 
 //By default pololu step drivers require an active high signal. However, some high power drivers require an active low signal as step.
 #define INVERT_X_STEP_PIN false
@@ -399,6 +399,8 @@ const unsigned int dropsegments=5; //everything with less than this number of st
 #define MAX_CMD_SIZE 96
 #define BUFSIZE 4
 
+// Set number of decimals used for sending floating point numbers back
+#define OUTPUT_FLOAT_N_DECIMALS 4
 
 // Firmware based and LCD controlled retract
 // M207 and M208 can be used to define parameters for the retraction.
