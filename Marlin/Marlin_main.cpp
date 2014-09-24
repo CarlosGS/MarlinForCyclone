@@ -3770,7 +3770,7 @@ Sigma_Exit:
       SERIAL_PROTOCOLLN((int)active_extruder);
     }
   }
-  if(code_seen('F')) // Set travel speed for subsequent moves
+  else if(code_seen('F')) // Set travel speed for subsequent moves
   {
     next_feedrate = code_value();
     if(next_feedrate > 0.0) feedrate = next_feedrate;
