@@ -1,7 +1,15 @@
+
+Marlin 3D Printer Firmware (for Cyclone PCB Factory)
 ==========================
-Marlin 3D Printer Firmware
-==========================
-[![Coverity Scan Build Status](https://scan.coverity.com/projects/2224/badge.svg)](https://scan.coverity.com/projects/2224)
+
+Important:
+------------
+Check <https://github.com/MarlinFirmware/Marlin/compare/Release...carlosgs:Marlin_v1> to see what was changed in this fork.  
+This repo may not be up to date. A tested version of the firmware is [included in Cyclone's repository](https://github.com/carlosgs/Cyclone-PCB-Factory/tree/master/Firmware). Use that one if you have doubts.  
+
+
+Original Readme File for Marlin:
+====================
 
 Marlin has a GPL license because I believe in open development.
 Please do not use this code in products (3D printers, CNC etc) that are closed source or are crippled by a patent.
