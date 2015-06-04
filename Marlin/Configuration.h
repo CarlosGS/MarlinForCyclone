@@ -488,7 +488,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
 // As Cyclone is slow, the homing feedrate is set very high so it saturates to the DEFAULT_MAX_FEEDRATE defined below
-#define HOMING_FEEDRATE {2000, 2000, 2000, 0}  // set the homing speeds (mm/min)
+#define HOMING_FEEDRATE {3000, 3000, 3000, 0}  // set the homing speeds (mm/min)
 
 // default settings
 
@@ -497,8 +497,8 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #define DEFAULT_AXIS_STEPS_PER_UNIT   {3200.0/(Cyclone_XY_Gear_Ratio*1.25),3200.0/(Cyclone_XY_Gear_Ratio*1.25),3200.0/(Cyclone_Z_Gear_Ratio*1.25),800}  // steps per unit for Cyclone
   
 #define DEFAULT_MAX_FEEDRATE          {5, 5, 2.5, 45}    // (mm/sec)    
-#define DEFAULT_MAX_ACCELERATION      {16,16,16, 3000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for skeinforge 40+, for older versions raise them a lot.
-#define DEFAULT_ACCELERATION          20     // X, Y, Z and E max acceleration in mm/s^2 for printing moves 
+#define DEFAULT_MAX_ACCELERATION      {3000,3000,3000, 3000}    // X, Y, Z, E maximum start speed for accelerated moves. For Cyclone, we saturate them since we always want accelerated moves
+#define DEFAULT_ACCELERATION          1000     // X, Y, Z and E max acceleration in mm/s^2 for printing moves 
 #define DEFAULT_RETRACT_ACCELERATION  3000   // X, Y, Z and E max acceleration in mm/s^2 for r retracts
 
 // Offset of the extruders (uncomment if using more than one and relying on firmware to position when changing).

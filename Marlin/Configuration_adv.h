@@ -35,7 +35,7 @@
 // you exit the value by any M109 without F*
 // Also, if the temperature is set to a value <mintemp, it is not changed by autotemp.
 // on an Ultimaker, some initial testing worked with M109 S215 B260 F1 in the start.gcode
-#define AUTOTEMP
+//#define AUTOTEMP
 #ifdef AUTOTEMP
   #define AUTOTEMP_OLDWEIGHT 0.98
 #endif
@@ -248,7 +248,7 @@
 #define DEFAULT_MINSEGMENTTIME        20000
 
 // If defined the movements slow down when the look ahead buffer is only half full
-//#define SLOWDOWN
+#define SLOWDOWN
 
 // Frequency limit
 // See nophead's blog for more info
@@ -258,7 +258,7 @@
 // Minimum planner junction speed. Sets the default minimum speed the planner plans for at the end
 // of the buffer and all stops. This should not be much greater than zero and should only be changed
 // if unwanted behavior is observed on a user's machine when running at very slow speeds.
-#define MINIMUM_PLANNER_SPEED 0.05// (mm/sec)
+#define MINIMUM_PLANNER_SPEED 1// (mm/sec)
 
 // MS1 MS2 Stepper Driver Microstepping mode table
 #define MICROSTEP1 LOW,LOW
@@ -388,16 +388,17 @@ const unsigned int dropsegments=5; //everything with less than this number of st
 
 // The number of linear motions that can be in the plan at any give time.
 // THE BLOCK_BUFFER_SIZE NEEDS TO BE A POWER OF 2, i.g. 8,16,32 because shifts and ors are used to do the ring-buffering.
+// For Cyclone we keep them at a minimum (since stopping the machine has to be quick)
 #if defined SDSUPPORT
-  #define BLOCK_BUFFER_SIZE 16   // SD,LCD,Buttons take more memory, block buffer needs to be smaller
+  #define BLOCK_BUFFER_SIZE 8   // SD,LCD,Buttons take more memory, block buffer needs to be smaller
 #else
-  #define BLOCK_BUFFER_SIZE 16 // maximize block buffer
+  #define BLOCK_BUFFER_SIZE 8 // maximize block buffer
 #endif
 
 
 //The ASCII buffer for receiving from the serial:
 #define MAX_CMD_SIZE 96
-#define BUFSIZE 4
+#define BUFSIZE 5
 
 // Set number of decimals used for sending floating point numbers back
 #define OUTPUT_FLOAT_N_DECIMALS 4
